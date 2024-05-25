@@ -1,0 +1,28 @@
+Imports und Datei-Pfad:
+
+streamlit, pandas, numpy und plotly.express werden importiert, um die notwendigen Funktionen zur Verfügung zu stellen.
+Der Pfad zur CSV-Datei wird als DATA_URL definiert.
+Dashboard-Titel:
+
+Mit st.title('Movie Analysis Dashboard') wird der Titel des Dashboards gesetzt.
+Funktion zum Laden der Daten:
+
+@st.cache_data dekoriert die Funktion load_data, damit die Daten zwischengespeichert werden. Das verbessert die Leistung, da die Daten nicht bei jedem Neuladen der Seite erneut geladen werden müssen.
+data = pd.read_csv(DATA_URL) liest die CSV-Datei ein und gibt die Daten zurück.
+Filter für Jahr, Bewertung, x- und y-Achse:
+
+years ermöglicht die Auswahl von mehreren Jahren aus den eindeutigen Werten der Spalte Year im DataFrame.
+rating ermöglicht die Auswahl eines Bewertungsbereichs (minimale und maximale Bewertung) durch einen Slider.
+x_axis und y_axis erlauben die Auswahl der Variablen für die x- und y-Achse des Scatterplots durch Dropdown-Menüs.
+size_by_revenue ist ein Radio-Button, der bestimmt, ob die Punktgröße im Scatterplot durch den Umsatz (Revenue (Millions)) bestimmt wird.
+Daten filtern:
+
+filtered_data filtert die Daten nach den ausgewählten Jahren und Bewertungen.
+Erstellen des Scatterplots:
+
+Wenn size_by_revenue auf Size by Revenue gesetzt ist und die Spalte Revenue (Millions) im DataFrame vorhanden ist, wird ein Scatterplot erstellt, bei dem die Punktgröße durch den Umsatz bestimmt wird.
+Andernfalls wird ein Scatterplot erstellt, bei dem die Punktgröße nicht durch den Umsatz bestimmt wird, und die Punkte werden nach der Bewertung (Rating) eingefärbt.
+labels und title setzen die Achsenbeschriftungen und den Titel des Plots.
+Scatterplot anzeigen:
+
+st.plotly_chart(fig) zeigt den erstellten Scatterplot im Streamlit-Dashboard an.
